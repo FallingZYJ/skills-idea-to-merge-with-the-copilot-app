@@ -13,6 +13,7 @@
     "preview": "astro preview --host --port 4321"
   },
   "dependencies": {
-    "astro": "^7.4.12"
+    "astro": "^7.4.12",
+    "posthog-js": "^1.453.2"
   }
 }
