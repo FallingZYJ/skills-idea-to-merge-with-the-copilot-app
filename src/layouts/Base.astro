@@ -1,4 +1,6 @@
 ---
+import PostHog from '../components/posthog.astro';
+
 const { title = "Mona's Bookmark Manager App" } = Astro.props;
 ---
 <!doctype html>
@@ -7,6 +9,7 @@ const { title = "Mona's Bookmark Manager App" } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+    <PostHog />
     <style>
       /* Monaspace webfonts (GitHub Next, SIL OFL 1.1) self-hosted from /public/fonts.
          Neon carries body text; Xenon gives headings a touch of contrast.

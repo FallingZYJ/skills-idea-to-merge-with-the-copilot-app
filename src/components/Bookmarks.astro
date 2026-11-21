@@ -62,9 +62,27 @@
   //
   // Because this code lives in a client <script>, browser storage APIs are
   // safe to use here without breaking the static build.
+  function logBookmarkIntent(message: string, interaction: string) {
+    window.posthog?.logger?.info(message, { interaction });
+  }
+
   const form = document.getElementById('add-bookmark');
   form?.addEventListener('submit', (event) => {
     event.preventDefault(); // keep this — stops the page from reloading
+    window.posthog?.capture('bookmark_creation_attempted');
+    logBookmarkIntent('bookmark creation requested', 'bookmark_creation');
     // Implement in Step 3.
+  });
+
+  document.getElementById('clear-all')?.addEventListener('click', () => {
+    window.posthog?.capture('bookmarks_clear_requested');
+    logBookmarkIntent('bookmark clear requested', 'bookmarks_clear');
+  });
+
+  document.getElementById('bookmark-list')?.addEventListener('click', (event) => {
+    if (event.target instanceof Element && event.target.closest('.copy')) {
+      window.posthog?.capture('bookmark_slug_copy_requested');
+      logBookmarkIntent('bookmark slug copy requested', 'bookmark_slug_copy');
+    }
   });
 </script>
